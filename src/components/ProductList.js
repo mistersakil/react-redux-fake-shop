@@ -3,18 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import InvalidRequest from "./InvalidRequest";
 import Empty from "./Empty";
 import Spinner from "./Spinner";
-import ProductSingle from "./ProductSingle";
+import ProductListItem from "./ProductListItem";
 import {
   get_product_success,
   get_product_failed,
+  get_product_request,
 } from "../redux/actions/productActions";
 const ProductList = () => {
   const dispatch = useDispatch();
   const { error, loading, products } = useSelector(
     (state) => state.productReducers
   );
-
   useEffect(() => {
+    dispatch(get_product_request());
+
     const productList = async () => {
       let products = await fetch(`https://fakestoreapi.com/products`);
       return products.status === 200
@@ -22,7 +24,7 @@ const ProductList = () => {
         : dispatch(get_product_failed(true));
     };
     productList();
-  }, []);
+  }, [dispatch]);
   return (
     <>
       {loading ? (
@@ -30,7 +32,7 @@ const ProductList = () => {
       ) : error ? (
         <InvalidRequest />
       ) : products.length ? (
-        <ProductSingle products={products} />
+        <ProductListItem products={products} />
       ) : (
         <Empty />
       )}

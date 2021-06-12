@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { sub_string_func } from "../settings";
-const ProductSingle = ({ products }) => {
+const ProductListItem = ({ products }) => {
   const productsMapping = products.map((product) => {
     const { id, title, price, description, category, image } = product;
     return (
@@ -53,4 +53,4 @@ const ProductSingle = ({ products }) => {
   );
 };
 
-export default ProductSingle;
+export default ProductListItem;
