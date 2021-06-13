@@ -4,13 +4,21 @@ import { sub_string_func } from "../settings";
 const ProductListItem = ({ products }) => {
   const productsMapping = products.map((product) => {
     const { id, title, price, description, category, image } = product;
+    const productDetailsUrl = `/product/${id}`;
     return (
       <div className="col" key={id}>
         <div className="card h-100 p-3">
-          <img src={image} className="card-img-top" alt="..." height="250vh" />
+          <Link to={productDetailsUrl}>
+            <img
+              src={image}
+              className="card-img-top"
+              alt="..."
+              height="250vh"
+            />
+          </Link>
           <div className="card-body">
             <Link
-              to={`/product/${id}`}
+              to={productDetailsUrl}
               style={{ textDecoration: "none", color: "#00a" }}
             >
               <h4 className="card-title" title={title}>
@@ -19,7 +27,7 @@ const ProductListItem = ({ products }) => {
             </Link>
 
             <Link
-              to={`/product/${id}`}
+              to={productDetailsUrl}
               style={{ textDecoration: "none", color: "#888" }}
             >
               <h6>
