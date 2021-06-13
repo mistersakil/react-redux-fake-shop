@@ -13,7 +13,7 @@ const productDetailsReducers = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case GET_PRODUCT_DETAILS_REQUEST: {
-      return { ...state };
+      return { ...initialState };
     }
     case GET_PRODUCT_DETAILS_SUCCESS: {
       return {

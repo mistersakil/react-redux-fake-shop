@@ -30,9 +30,6 @@ const Header = () => {
             <NavLink className="nav-link active" aria-current="page" to="/">
               Products
             </NavLink>
-            <NavLink className="nav-link" to="/product/1">
-              Product Single
-            </NavLink>
           </div>
         </div>
       </div>
