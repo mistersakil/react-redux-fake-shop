@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { slug_func, uc_first_func } from "../settings";
 const ProductDetailsItem = ({
   product: { category, description, id, image, price, title },
 }) => {
+  const productsByCategoryUrl = `/products/category/${slug_func(category)}`;
   return (
     <div className="card mb-3 mt-4">
       <div className="row g-0">
@@ -14,7 +16,12 @@ const ProductDetailsItem = ({
             <h2 className="card-title">{title}</h2>
             <h6 className="mb-3">
               <small className="text-muted">
-                on <Link to="/">{category}</Link>
+                <Link
+                  title={uc_first_func(category)}
+                  to={productsByCategoryUrl}
+                >
+                  {uc_first_func(category)}
+                </Link>
               </small>
             </h6>
             <p className="card-text">{description}</p>

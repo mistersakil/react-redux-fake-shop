@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { sub_string_func } from "../settings";
+import { sub_string_func, slug_func, uc_first_func } from "../settings";
 const ProductListItem = ({ products }) => {
   const productsMapping = products.map((product) => {
     const { id, title, price, description, category, image } = product;
     const productDetailsUrl = `/product/${id}`;
+    const productsByCategoryUrl = `/products/category/${slug_func(category)}`;
     return (
       <div className="col" key={id}>
         <div className="card h-100 p-3">
@@ -18,6 +19,7 @@ const ProductListItem = ({ products }) => {
           </Link>
           <div className="card-body">
             <Link
+              title={title}
               to={productDetailsUrl}
               style={{ textDecoration: "none", color: "#00a" }}
             >
@@ -27,11 +29,12 @@ const ProductListItem = ({ products }) => {
             </Link>
 
             <Link
-              to={productDetailsUrl}
+              title={uc_first_func(category)}
+              to={productsByCategoryUrl}
               style={{ textDecoration: "none", color: "#888" }}
             >
               <h6>
-                On <em>{category}</em>
+                On <em>{uc_first_func(category)}</em>
               </h6>
             </Link>
             <p className="card-text">

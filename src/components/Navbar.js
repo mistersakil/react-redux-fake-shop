@@ -25,7 +25,7 @@ const Navbar = () => {
     categoryGetRequestFromApi();
   }, []);
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-dark bg-dark sticky-top navbar-expand-lg mb-3">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img
@@ -73,7 +73,7 @@ const Navbar = () => {
                     <li key={index}>
                       <NavLink
                         className="dropdown-item"
-                        to={`/category/${slug_func(category)}`}
+                        to={`/products/category/${slug_func(category)}`}
                       >
                         {uc_first_func(category)}
                       </NavLink>

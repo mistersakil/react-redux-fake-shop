@@ -10,8 +10,14 @@ export const uc_first_func = (str = null) => {
   return str;
 };
 
-export const slug_func = (str = null) => {
-  let strToArray = str.split(" ");
-  str = strToArray.join("-");
+export const slug_func = (str = null, isSlug = true) => {
+  let strToArray;
+  if (isSlug) {
+    strToArray = str.split(" ");
+    str = strToArray.join("-");
+  } else {
+    strToArray = str.split("-");
+    str = strToArray.join(" ");
+  }
   return str;
 };
