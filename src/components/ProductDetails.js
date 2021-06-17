@@ -10,6 +10,11 @@ import {
   get_product_details_success,
   get_product_details_failed,
 } from "../redux/actions/productActions";
+import {
+  productsByCategoryGetRequest,
+  productsByCategoryGetSuccess,
+  productsByCategoryGetFailed,
+} from "../redux/actions/productsByCategoryActions";
 
 const ProductDetails = (props) => {
   const { id } = useParams();
@@ -18,19 +23,35 @@ const ProductDetails = (props) => {
     (state) => state.productDetailsReducers
   );
   const get_product_details_from_api = async () => {
+    dispatch(get_product_details_request());
     const response = await fetch(
       `https://fakestoreapi.com/products/${parseInt(id)}`
     );
-    return response.status === 200
-      ? dispatch(get_product_details_success(await response.json()))
-      : dispatch(get_product_details_failed());
+    let json = await response.json();
+    if (response.status === 200) {
+      dispatch(get_product_details_success(json));
+      let categoryName = json.category;
+
+      const productsByCategoryResponse = await fetch(
+        `https://fakestoreapi.com/products/category/${categoryName}`
+      );
+      return productsByCategoryResponse.status === 200
+        ? dispatch(
+            productsByCategoryGetSuccess(
+              await productsByCategoryResponse.json()
+            )
+          )
+        : dispatch(productsByCategoryGetFailed());
+    } else {
+      dispatch(get_product_details_failed());
+    }
   };
 
   useEffect(() => {
-    dispatch(get_product_details_request());
     get_product_details_from_api();
     return () => {
       dispatch(get_product_details_request());
+      dispatch(productsByCategoryGetRequest());
     };
   }, [id]);
   console.log(product);

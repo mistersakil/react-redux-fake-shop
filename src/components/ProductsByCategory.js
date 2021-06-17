@@ -4,7 +4,7 @@ import { slug_func, uc_first_func } from "../settings";
 import banner from "../images/grey-banner.jpg";
 import Spinner from "./Spinner";
 import InvalidRequest from "./InvalidRequest";
-import ProductListItem from "./ProductListItem";
+import ProductListItems from "./ProductListItems";
 import Empty from "./Empty";
 import {
   productsByCategoryGetRequest,
@@ -56,7 +56,7 @@ const ProductsByCategory = () => {
       ) : error ? (
         <InvalidRequest />
       ) : products.length ? (
-        <ProductListItem products={products} />
+        <ProductListItems products={products} />
       ) : (
         <Empty />
       )}

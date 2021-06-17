@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import InvalidRequest from "./InvalidRequest";
 import Empty from "./Empty";
 import Spinner from "./Spinner";
-import ProductListItem from "./ProductListItem";
+import ProductListItems from "./ProductListItems";
 import {
   get_product_success,
   get_product_failed,
@@ -32,7 +32,7 @@ const ProductList = () => {
       ) : error ? (
         <InvalidRequest />
       ) : products.length ? (
-        <ProductListItem products={products} />
+        <ProductListItems products={products} />
       ) : (
         <Empty />
       )}

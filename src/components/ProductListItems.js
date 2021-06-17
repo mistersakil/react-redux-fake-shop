@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { sub_string_func, slug_func, uc_first_func } from "../settings";
-const ProductListItem = ({ products }) => {
+const ProductListItems = ({ products, limit }) => {
+  if (limit) {
+    products = products.slice(0, parseInt(limit));
+  }
   const productsMapping = products.map((product) => {
     const { id, title, price, description, category, image } = product;
     const productDetailsUrl = `/product/${id}`;
     const productsByCategoryUrl = `/products/category/${slug_func(category)}`;
+
     return (
       <div className="col" key={id}>
         <div className="card h-100 p-3">
@@ -64,4 +68,4 @@ const ProductListItem = ({ products }) => {
   );
 };
 
-export default ProductListItem;
+export default ProductListItems;
