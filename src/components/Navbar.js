@@ -4,6 +4,7 @@ import { uc_first_func, slug_func } from "../settings";
 import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/collapse";
 import logo from "../images/logo.svg";
+import { FiShoppingCart, FiUser } from "react-icons/fi";
 import {
   category_get_success,
   category_get_failed,
@@ -83,6 +84,26 @@ const Navbar = () => {
               </ul>
             </li>
           </ul>
+          <form className="d-flex">
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form>
+          <div className="d-flex">
+            <Link className="text-light" title="Cart" to="/cart">
+              <FiShoppingCart className="fs-3" />
+              <sup>
+                <span className="badge rounded-pill bg-primary">2</span>
+              </sup>
+            </Link>
+            &nbsp;
+            <Link className="text-light" title="Login" to="/login">
+              <FiUser className="fs-3" />
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
